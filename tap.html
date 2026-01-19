@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Find The Hidden Love ❤️</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff6f91, #ffc1cc);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-top: 15px;
+}
+
+#counter {
+    text-align: center;
+    color: white;
+    font-size: 18px;
+}
+
+.heart {
+    position: absolute;
+    font-size: 40px;
+    cursor: pointer;
+    animation: float 6s infinite alternate;
+}
+
+@keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50px); }
+}
+
+.popup {
+    position: fixed;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 280px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+button {
+    padding: 8px 15px;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>💖 Tap The Hearts Bubbu 💖</h1>
+<div id="counter">Hearts Found: 0 / 7</div>
+
+<div class="popup" id="popup">
+    <p id="msg"></p>
+    <button onclick="closePopup()">OK</button>
+</div>
+
+<script>
+let messages = [
+"You're my favorite notification ❤️",
+"I smile stupidly whenever I think of you 😄",
+"Long distance can't stop my love for you 🌍",
+"You're stuck with me forever 😌",
+"My heart feels home with you 🏠❤️",
+"One hug from you can fix everything 🤗",
+"I love you more than yesterday 💕"
+];
+
+let found = 0;
+
+messages.forEach((msg) => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * (window.innerWidth - 50) + "px";
+    heart.style.top = Math.random() * (window.innerHeight - 100) + "px";
+
+    heart.onclick = () => {
+        document.getElementById("msg").innerText = msg;
+        document.getElementById("popup").style.display = "block";
+        heart.remove();
+        found++;
+        document.getElementById("counter").innerText = `Hearts Found: ${found} / 7`;
+
+        if(found === 7){
+            setTimeout(()=>{
+                alert("🎉 You found all the love! Bubbu, you own my heart forever ❤️");
+            },500);
+        }
+    };
+
+    document.body.appendChild(heart);
+});
+
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
